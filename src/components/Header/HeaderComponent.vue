@@ -7,7 +7,7 @@
         <div id="header-wrapper">
             <div>
                 <a href="/" id="icon-wrapper">
-                    <font-awesome-icon :icon="['fab', 'html5']" class="icon icon__html5" />
+                    <font-awesome-icon :icon="['fab', 'html5']" class="icon icon--html5" />
                 </a>
             </div>
             <div id="animated-credentials-wrapper">
@@ -43,7 +43,7 @@
             .icon{
                 position: absolute;
                 inset: 13px 15px;
-                &__html5{
+                &--html5{
                     font-size: 2rem;
                     color: white;
 
