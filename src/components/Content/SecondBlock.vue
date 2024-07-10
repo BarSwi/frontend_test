@@ -58,6 +58,7 @@
 
             &:hover, &:focus, &:active{
                 color: white;
+                outline: none;
                 background-image: linear-gradient(to bottom right, rgb(205,116,0), rgb(253,157,34));
             }
             &:hover{

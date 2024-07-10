@@ -31,6 +31,8 @@ const getItem = (option) =>{
 //EventBus zamiast centralizowanego Vuex, ze względu na w miarę szybki setup i mały rozmiar zadania
 EventBus.$on('addSentence', (option) => {
     let newItem = getItem(option);
+    if(!newItem) return;
+    
     if(sentences.value.includes(newItem)){
         alert(`Zdanie: ${newItem} znajduje się w bloku trzecim!`)
         return;

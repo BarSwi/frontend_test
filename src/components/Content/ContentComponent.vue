@@ -27,12 +27,14 @@
 
 <style lang="scss" scoped>
     .header{
-        color: white;
+        text-align: center; 
         &--home{
+            margin: 0 auto;
+            width: max-content;
             font-weight: normal;
             font-size: 1.5rem;
             position: relative; 
-            display: inline-block; 
+            display: block; 
             padding: 15px 0;
             &:after{
                 position: absolute;

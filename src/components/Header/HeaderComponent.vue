@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <header>
+    <navbar>
         <div id="header-wrapper">
             <div>
                 <a href="/" id="icon-wrapper">
@@ -14,7 +14,7 @@
                 <animated-credentials/>
             </div>
         </div>
-    </header>
+    </navbar>
 
 </template>
 

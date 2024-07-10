@@ -19,6 +19,7 @@ const props = defineProps({
 
 <style lang="scss" scoped>
     .block-wrapper{
+        text-align: center;
         width: 25vw;
         font-size: 1rem;
         #block-wrapper-title{
