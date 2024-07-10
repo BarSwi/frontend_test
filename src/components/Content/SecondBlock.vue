@@ -13,17 +13,18 @@
     const validator = () =>{
         if(selectedOption.value===''){
             alert("Nie wybrano żadnej opcji! (Blok pierwszy)");
-            return;
+            return false;
         }
+        return true;
     }
     const addSentenceToThird = () => {
-        validator();
-        EventBus.$emit('addSentence', selectedOption.value);
+        if (validator()) EventBus.$emit('addSentence', selectedOption.value);
+      
     }
 
     const switchSentencesThird = () =>{
-        validator();
-        EventBus.$emit('switchSentence', selectedOption.value);
+        if (validator())  EventBus.$emit('switchSentence', selectedOption.value);
+       
     }
 
 </script>
