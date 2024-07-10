@@ -9,6 +9,7 @@
     const resetSettings = () => {
         credentialsFlag.value=false;
         EventBus.$emit('resetSettings');
+        EventBus.$emit("windowSizeChanged");
     }
     const toggleCredentials = () =>{
         credentialsFlag.value = !credentialsFlag.value;
@@ -74,6 +75,7 @@
 
 <style lang = "scss" scoped>
   #footer-right{
+        position: relative;
         $color: rgb(42, 45, 50);
         font-size: 0.65rem;
         display: flex;
@@ -116,13 +118,14 @@
         }
         #toggle-menu-wrapper{
             ul{
+                position: absolute;
                 display: none;
                 border-radius: 3px 3px 0 0;
                 list-style: none;
                 font-size: 0.5rem;
                 padding: 0;
                 position: absolute;
-                bottom: 90%;
+                bottom: 155%;
                 width: 11vw;
                 padding: 2vh 1vw;
                 background-color: white;

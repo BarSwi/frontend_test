@@ -1,12 +1,19 @@
 <script setup>
 import { onMounted,onUnmounted, ref } from 'vue';
 import MenuSettings from './MenuSettings.vue';
+import EventBus from '@/EventBus';
     const isBodyScrollable = ref(false);
     const checkScrollability = () => {
         const bodyHeight = document.body.scrollHeight;
         const windowHeight = window.innerHeight;
         isBodyScrollable.value = bodyHeight > windowHeight;
     };
+
+    EventBus.$on("windowSizeChanged", () => {
+        window.requestAnimationFrame(() => {
+            checkScrollability();
+        });
+    });
 
     onMounted(() => {
         checkScrollability();

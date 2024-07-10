@@ -39,7 +39,7 @@ const sentences = ref([]);
 
         return newItem;
     }
-    
+
     //Once again I am using EventBus because the task is small so additional store would be an overkill
     EventBus.$on('addSentence', (option) => {
         let newItem = getItem(option);
@@ -50,12 +50,14 @@ const sentences = ref([]);
             return;
         }
         sentences.value.push(newItem);
+        EventBus.$emit("windowSizeChanged");
     });
 
     EventBus.$on("switchSentence", (option) =>{
         sentences.value.splice(0, sentences.value.length); 
         let newItem = getItem(option);
         sentences.value.push(newItem); 
+        EventBus.$emit("windowSizeChanged");
     });
 
     EventBus.$on("resetSettings", () =>{

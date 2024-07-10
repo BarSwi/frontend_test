@@ -27,7 +27,7 @@ body{
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
   font-family: 'Open Sans', sans-serif;
 
-
+  overflow-x: hidden;
   background-color: rgb(42, 45,54);
   margin: 0;
 }
