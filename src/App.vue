@@ -1,9 +1,12 @@
 <template>
-  <HomePage />
+  <header-component/>
+  <RouterView />
+  <footer-component/>
 </template>
 
 <script>
-import HomePage from './pages/HomePage.vue';
+import FooterComponent from './components/Footer/FooterComponent.vue';
+import HeaderComponent from './components/Header/HeaderComponent.vue';
 import sentencesData from '@/zdania.json';
 
 const storeSentencesInLocalStorage = (sentences) => {
@@ -14,7 +17,8 @@ storeSentencesInLocalStorage(sentencesData);
 export default {
   name: 'App',
   components: {
-    HomePage
+    FooterComponent,
+    HeaderComponent
   }
 }
 </script>

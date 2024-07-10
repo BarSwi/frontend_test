@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import {router} from './router.js'
 import App from './App.vue'
 
 //Icons
@@ -11,4 +12,5 @@ library.add(faHtml5, faAngleUp);
 
 createApp(App)
 .component('font-awesome-icon', FontAwesomeIcon)
+.use(router)
 .mount('#app')

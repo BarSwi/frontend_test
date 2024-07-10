@@ -6,9 +6,7 @@
     <navbar>
         <div id="header-wrapper">
             <div>
-                <a href="/" id="icon-wrapper">
-                    <font-awesome-icon :icon="['fab', 'html5']" class="icon icon--html5" />
-                </a>
+                <RouterLink to="/">  <font-awesome-icon :icon="['fab', 'html5']" class="icon icon--html5" /></RouterLink>
             </div>
             <div id="animated-credentials-wrapper">
                 <animated-credentials/>
