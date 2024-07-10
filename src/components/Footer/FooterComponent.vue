@@ -52,14 +52,25 @@ import EventBus from '@/EventBus';
         background-color: rgb(21,22,26);
         width: 94vw;
         #footer-left{
+            $trainsition: .5s ease-in-out;
             border: 1px solid $color;
+            transition: $trainsition;
             //Niecodzienne, ale zachowa stosunek do tego overflow
             width: 3.5rem;
             .inner-text {
+                transition: $trainsition;
                 padding: 0 10px;
                 color: $color; 
                 font-size: 0.8rem; 
                 font-weight: 400;
+            }
+
+            &:hover{
+                transform: rotate(360deg);
+                border-color: rgb(158,125,82);
+                .inner-text{
+                    transform: rotate(-360deg);
+                }
             }
         }
         &.__fixed{

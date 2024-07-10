@@ -95,6 +95,20 @@
         input{
             opacity: 0;
             position: absolute;
+
+            &:checked{
+                + #toggle-menu-wrapper .icon__main{
+                transform: rotate(180deg);
+                }
+                + #toggle-menu-wrapper{
+                    ul{
+                        display: block;
+                        opacity: 1;
+                        bottom: 155%;
+                    }
+                }
+            }
+            
         }
         .icon{
             transition: .1s ease-in;
@@ -106,32 +120,26 @@
         #toggle-label-text{
             padding: 0 10px 0 0;
         }
-        input:checked{
-            + #toggle-menu-wrapper .icon__main{
-                transform: rotate(180deg);
-            }
-            + #toggle-menu-wrapper{
-                ul{
-                    display: block;
-                }
-            }
-        }
         #toggle-menu-wrapper{
             ul{
+
+                //Since I cannot do that with JS it is harder to achieve desired stacking context for my ul to be BEHIND the footer itself. 
+                //So it does not look as good as it could.
+                transition: .2s ease-in-out;
                 position: absolute;
-                display: none;
+                z-index: -5;
+                display: block;
+                opacity: 0;
                 border-radius: 3px 3px 0 0;
                 list-style: none;
                 font-size: 0.5rem;
-                padding: 0;
-                position: absolute;
-                bottom: 155%;
+                bottom: 70%;
+                left: 1px;
                 width: 11vw;
                 padding: 2vh 1vw;
                 background-color: white;
                 color: black;
                 text-align: left;
-
                 li{
                     font-weight: 400;
                     padding: 2px;

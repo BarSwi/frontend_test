@@ -30,8 +30,10 @@
         min-height: calc(5vh + 1rem);
         margin: 0;
         #icon-wrapper{      
+            $transition: .2s ease-in-out;
+            font-size: 1rem;
             display: block;
-            transition: background-color .2s ease-in;
+            transition: background-color $transition;
             margin: 10px 0 10px 30px;  
             height: 40px;
             width: 40px;
@@ -41,10 +43,11 @@
             border-radius: 50%;
             padding: 15px;
             .icon{
+                transition: $transition;
                 position: absolute;
                 inset: 13px 15px;
                 &--html5{
-                    font-size: 2rem;
+                    font-size: 2em;
                     color: white;
 
                 }
@@ -52,6 +55,10 @@
             &:hover{
                 cursor: pointer;
                 background-color: orange;
+
+                .icon{
+                    transform: scale(1.15);
+                }
             }
         }
       
