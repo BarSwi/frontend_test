@@ -75,7 +75,7 @@ const sentences = ref([]);
 
 <template>
      <div v-for="(sentence, index) in sortedSentences" :key="index" class="sentence-item">
-      {{ sentence }}
+      <p>{{ sentence }}</p>
     </div>
 </template>
 
