@@ -29,6 +29,9 @@ html{
   @media (max-width: 960px) {
     font-size: 23px;
   }
+  @media (max-width: 370px) {
+    font-size: 20px;
+  }
 }
 body{
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
@@ -37,7 +40,7 @@ body{
   overflow-x: hidden;
   background-color: rgb(42, 45,54);
   margin: 0;
-  min-width: 370px;
+  min-width: 320px;
 
   @media (max-width: 370px) {
     overflow-x: visible;
@@ -46,7 +49,6 @@ body{
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  //text-align: center;
   color: white;
 }
 </style>

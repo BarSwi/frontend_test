@@ -62,7 +62,7 @@
         
         .block-wrapper{
             width: 25vw;
-            min-width: 300px;
+            min-width: 250px;
             margin: 5vh 0 5vh 0;
             &:first-of-type{
             margin: 5vh 1vw 5vh 5vw;
@@ -88,5 +88,11 @@
             }
         }
 
+    }
+
+    @media (max-width: 370px) {
+        #blocks-wrapper{
+            justify-content: center;
+        }
     }
 </style>

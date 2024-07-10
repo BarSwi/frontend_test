@@ -5,7 +5,7 @@
 <template>
     <navbar>
         <div id="header-wrapper">
-            <div>
+            <div id="icon-wrapper">
                 <RouterLink to="/">  <font-awesome-icon :icon="['fab', 'html5']" class="icon icon--html5" /></RouterLink>
             </div>
             <div id="animated-credentials-wrapper">
@@ -25,7 +25,7 @@
         align-items: center;
         background-color: black;
         max-width: 100vw;   
-        min-width: 370px;
+        min-width: 320px;
         min-height: calc(5vh + 1rem);
         margin: 0;
         #icon-wrapper{      
@@ -72,5 +72,21 @@
         #header-wrapper{
             font-size: 0.9rem;
         }
+    }
+
+    @media (max-width: 960px) {
+        #icon-wrapper{
+            height: 30px !important;
+            width: 30px !important;    
+        }
+        .icon{
+                inset: 10px 13px !important;
+            }   
+    }
+
+    @media (max-width: 370px) {
+        .icon{
+                inset: 13px 15px !important;
+            }   
     }
 </style>

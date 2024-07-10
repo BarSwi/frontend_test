@@ -21,4 +21,10 @@
     #animated-credentials-name{
         text-align: right;
     }
+
+    @media (max-width: 370px) {
+        #animated-credentials-title{
+            text-align: right;
+        }
+    }
 </style>

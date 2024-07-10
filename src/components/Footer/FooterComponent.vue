@@ -53,7 +53,7 @@ import EventBus from '@/EventBus';
         justify-content: space-between;
         background-color: rgb(21,22,26);
         width: 94vw;
-        min-width: 370px;
+        min-width: 320px;
         #footer-left{
             $trainsition: .5s ease-in-out;
             border: 1px solid $color;

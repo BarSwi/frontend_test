@@ -104,8 +104,32 @@
 
             .checkmark{
                 left: 24%;
-                top: -1px;
+                top: -3px;
             }
         }
     }
+
+    @media (max-width: 960px) {
+        .icon{
+                inset: 13px 15px !important;
+            }   
+
+        .checkmark{
+            top: 0 !important;
+            height: 15px !important;
+            width: 15px !important;
+            border: 3px solid white !important;
+            border-radius: 50%;
+            
+        &::after{
+            top: 2px !important;
+            left: 2.5px !important;
+            border-radius: 50%;
+            background-color: white;
+            width: 10px !important;
+            height: 10px !important;
+        }
+
+    }
+}
 </style>
