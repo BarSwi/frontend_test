@@ -1,8 +1,9 @@
 <script setup>
     import EventBus from '@/EventBus';
-    import {ref, watchEffect} from 'vue';
+    import {ref, watchEffect, onMounted, onUnmounted} from 'vue';
 
     const credentialsFlag = ref(false);
+    const isMenuOpen = ref(false);
 
     //Once again I am using EventBus because the task is small so additional store would be an overkill
     const resetSettings = () => {
@@ -13,8 +14,26 @@
         credentialsFlag.value = !credentialsFlag.value;
     }
 
+    const handleCheckboxChange = (event) => {
+        isMenuOpen.value = event.target.checked;
+    };
     watchEffect(() => {
         EventBus.$emit('showCredentials', credentialsFlag.value);
+    });
+
+
+    onMounted(() => {
+        const toggleMenu = document.getElementById('toggle-menu');
+        if (toggleMenu) {
+            toggleMenu.addEventListener('change', handleCheckboxChange);
+        }
+    });
+
+    onUnmounted(() => {
+        const toggleMenu = document.getElementById('toggle-menu');
+        if (toggleMenu) {
+            toggleMenu.removeEventListener('change', handleCheckboxChange);
+        }
     });
 
 </script>
@@ -22,7 +41,7 @@
 <template>
 <div id = "footer-right">
     <div id="footer-right-menu">
-        <input type ="checkbox" id = "toggle-menu"/>
+        <input type ="checkbox" id = "toggle-menu" aria-controls="toggle-menu-wrapper" :aria-expanded="isMenuOpen"/>
         <div id = "toggle-menu-wrapper">
             <label for="toggle-menu" id = "toggle-menu-label">
                 <span id = "toggle-label-text">
@@ -32,14 +51,14 @@
             </label>
             <ul>
                     <li>
-                        <button id = "reset-settings-btn" @click ="resetSettings"></button>
+                        <button id = "reset-settings-btn" @click ="resetSettings" aria-label="Zresetuj ustawienai strony"></button>
                         <label for="reset-settings-btn">
                             <font-awesome-icon aria-hidden="true" :icon="['fas', 'angle-up']" class = "icon icon__right" />
                             <span>ZRESETUJ USTAWIENIA</span>
                         </label>
                     </li>
                     <li>
-                        <button id = "show-credentials" @click="toggleCredentials"></button>
+                        <button id = "show-credentials" @click="toggleCredentials" aria-label="Pokaz dane osobowe"></button>
                         <label for="show-credentials">
                             <font-awesome-icon aria-hidden="true" :icon="['fas', 'angle-up']" class = "icon icon__right" />
                             
