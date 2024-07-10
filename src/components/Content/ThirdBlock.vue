@@ -1,6 +1,6 @@
 <script setup>
 import EventBus from '@/EventBus';
-import { ref, computed } from 'vue';
+import { ref, computed, onUnmounted, onMounted } from 'vue';
 const sentences = ref([]);
 
     const getItemByIndex = (index, storage) => {
@@ -36,46 +36,68 @@ const sentences = ref([]);
         } else if (option === 'option3') {
             newItem = getRandomItem(sentencesStorage);
         }
-
         return newItem;
     }
 
-    //Once again I am using EventBus because the task is small so additional store would be an overkill
-    EventBus.$on('addSentence', (option) => {
+
+    const handleAddSentence = (option) => {
         let newItem = getItem(option);
-        if(!newItem) return;
-        
-        if(sentences.value.includes(newItem)){
-            alert(`Zdanie: ${newItem} znajduje się w bloku trzecim!`)
+        if (!newItem) return;
+
+        if (sentences.value.includes(newItem)) {
+            alert(`Zdanie: ${newItem} znajduje się w bloku trzecim!`);
             return;
         }
         sentences.value.push(newItem);
-        EventBus.$emit("windowSizeChanged");
-    });
+        EventBus.$emit('windowSizeChanged');
+    };
 
-    EventBus.$on("switchSentence", (option) =>{
-        sentences.value.splice(0, sentences.value.length); 
+    const handleSwitchSentence = (option) => {
+        sentences.value.splice(0, sentences.value.length);
         let newItem = getItem(option);
-        sentences.value.push(newItem); 
-        EventBus.$emit("windowSizeChanged");
-    });
+        sentences.value.push(newItem);
+        EventBus.$emit('windowSizeChanged');
+    };
 
-    EventBus.$on("resetSettings", () =>{
-        sentences.value.splice(0, sentences.value.length); 
-    }); 
+    const handleResetSettings = () => {
+        sentences.value.splice(0, sentences.value.length);
+    };
+
+    //Once again I am using EventBus because the task is small so additional store would be an overkill
+    const addSentenceListener = () => {
+        EventBus.$on('addSentence', handleAddSentence);
+    };
+
+    const switchSentenceListener = () => {
+        EventBus.$on('switchSentence', handleSwitchSentence);
+    };
+
+    const resetSettingsListener = () => {
+        EventBus.$on('resetSettings', handleResetSettings);
+    };
 
 
     const sortedSentences = computed(() =>
-    sentences.value.slice().sort((a, b) => a.localeCompare(b))
+        sentences.value.slice().sort((a, b) => a.localeCompare(b))
     );
 
+    onUnmounted(() => {
+        EventBus.$off('addSentence', handleAddSentence);
+        EventBus.$off('switchSentence', handleSwitchSentence);
+        EventBus.$off('resetSettings', handleResetSettings);
+    });
 
+    onMounted(() => {
+        addSentenceListener();
+        switchSentenceListener();
+        resetSettingsListener();
+    });
 
 </script>
 
 <template>
-     <div v-for="(sentence, index) in sortedSentences" :key="index" class="sentence-item">
-      <p>{{ sentence }}</p>
+    <div v-for="(sentence, index) in sortedSentences" :key="index" class="sentence-item">
+        <p>{{ sentence }}</p>
     </div>
 </template>
 

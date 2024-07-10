@@ -1,6 +1,6 @@
 <script setup>
     import EventBus from '@/EventBus';
-    import { ref, watchEffect } from 'vue';
+    import { onMounted, onUnmounted, ref, watchEffect } from 'vue';
 
     const options = [
     { value: 'option1', text: 'Opcja pierwsza' },
@@ -8,14 +8,23 @@
     { value: 'option3', text: 'Opcja losowa' }
     ];
 
+    const addResetSettingsListener = () =>{
+        EventBus.$on('resetSettings', handleResetSettings)
+    }
+    const handleResetSettings = () => {
+        selectedOption.value ='';
+    }
     const selectedOption = ref('');
     watchEffect(() => {
         EventBus.$emit('optionChanged', selectedOption.value);
     });
 
-    EventBus.$on('resetSettings', () =>{
-        selectedOption.value = '';
-    });
+    onMounted(() =>{
+        addResetSettingsListener();
+    })
+    onUnmounted(() => {
+        EventBus.$off('resetSettings', handleResetSettings);
+    })
 </script>
 
 <template>
@@ -75,8 +84,8 @@
 
         .checkmark{
             position: absolute;
-            top: 0;
-            left: 0;
+            top: -3px;
+            left: 5px;
             height: 20px;
             width: 20px;
             border: 4px solid white;
@@ -84,8 +93,8 @@
                 
             //Tutaj perfekcjonizm mi nakazuje zrobić pixel perfect
             &::after{
-                transition: opacity $transition;
                 position: absolute;
+                transition: opacity $transition;
                 opacity: 0;
                 content: '';
                 top: 3px;
@@ -103,7 +112,7 @@
             padding-left: 27% !important;
 
             .checkmark{
-                left: 24%;
+                left: 25%;
                 top: -3px;
             }
         }
@@ -111,7 +120,7 @@
 
     @media (max-width: 960px) {
         .icon{
-                inset: 13px 15px !important;
+                inset: 13px 15px;
             }   
 
         .checkmark{

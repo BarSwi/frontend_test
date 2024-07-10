@@ -1,11 +1,22 @@
 <script setup>
     import EventBus from '@/EventBus';
-    import {ref} from 'vue';
+    import {onMounted, onUnmounted, ref} from 'vue';
     const shown = ref(false);
 
-    EventBus.$on("showCredentials", (flag) => {
+    const addShowCredentialsListener = () =>{
+        EventBus.$on('showCredentials', handleShowCredentials);
+    }
+
+    const handleShowCredentials = (flag) =>{
         shown.value = flag;
-    });
+    }
+
+    onMounted(()=>{
+        addShowCredentialsListener();
+    })
+    onUnmounted(() =>{
+        EventBus.$off('showCredentials', handleShowCredentials);
+    })
 </script>
 
 <template>

@@ -66,6 +66,14 @@
                             <span>{{!credentialsFlag ?  "POKAŻ DANE OSOBOWE" : "SCHOWAJ DANE OSOBOWE"}}</span>
                         </label>
                     </li>
+                    <li>
+                        <RouterLink to="/editor">
+                            <label>
+                                <font-awesome-icon aria-hidden="true" :icon="['fas', 'angle-up']" class = "icon icon__right" />
+                                <span>ZMIEŃ JSON</span>
+                            </label>    
+                        </RouterLink>
+                    </li>
             </ul>
         </div>
     </div>
@@ -76,7 +84,7 @@
 <style lang = "scss" scoped>
   #footer-right{
         $color: rgb(42, 45, 50);
-        $min-width: 180px;
+        $min-width: 130px;
         position: relative;
         font-size: 0.65rem;
         display: flex;
@@ -89,6 +97,8 @@
             width: 13vw;
             text-align: center;
             border: 1px solid $color;
+            color: rgb(129,133,145);
+            font-weight: 700;
 
             &:hover{
             cursor: pointer;
@@ -136,7 +146,7 @@
                 bottom: 70%;
                 left: 1px;
                 width: 11vw;
-                min-width: calc(180px - 2vw);
+                min-width: calc($min-width - 2vw);
                 padding: 2vh 1vw;
                 background-color: white;
                 color: black;
@@ -157,6 +167,9 @@
                         padding: 0;  
                         text-align: left;
                     }
+                    a{
+                        text-decoration: none;
+                    }
                     span{
                         padding: 0 0 0 5px;
                     }
@@ -172,9 +185,11 @@
                             }
                         }
                     }
-                    &:hover{
-                        color: orange;
+                    &:hover {
                         cursor: pointer;
+                        label{
+                            color: orange;
+                        }
                     }
                 }
             }

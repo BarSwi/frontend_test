@@ -8,9 +8,17 @@ import EventBus from '@/EventBus';
         const windowHeight = window.innerHeight;
         const footerHeight = document.getElementsByTagName("footer")[0].clientHeight;
         isBodyScrollable.value = isBodyScrollable.value ? bodyHeight > windowHeight : bodyHeight > windowHeight - footerHeight;
-        console.log(windowHeight, bodyHeight, footerHeight);
     };
 
+    const addWindowSizeChangedLitener = () =>{
+        EventBus.$on("windowSizeChanged", handleWindowSizeChanged);
+    }
+
+    const handleWindowSizeChanged = () =>{
+        window.requestAnimationFrame(() => {
+            checkScrollability();
+        });
+    }
     EventBus.$on("windowSizeChanged", () => {
         window.requestAnimationFrame(() => {
             checkScrollability();
@@ -19,11 +27,14 @@ import EventBus from '@/EventBus';
 
     onMounted(() => {
         checkScrollability();
+        addWindowSizeChangedLitener();
         window.addEventListener('resize', checkScrollability);
+ 
     });
 
     onUnmounted(() => {
         window.removeEventListener('resize', checkScrollability);
+        EventBus.$off('windowSizeChanged', handleWindowSizeChanged);
     });
 
 
