@@ -31,10 +31,10 @@
 
 <template>
     <div id="btn-wrapper">
-        <button @click="switchSentencesThird">
+        <button @click="switchSentencesThird" aria-label="Zastąp zdanie w bloku trzecim, wybranym zdaniem">
             ZASTĄP
         </button>
-        <button @click="addSentenceToThird">
+        <button @click="addSentenceToThird" aria-label="Doklej do trzeciego bloku wybrane zdanie">
             DOKLEJ
         </button>
     </div>
