@@ -5,7 +5,7 @@
 
     const selectedOption = ref('');
 
-    //EventBus zamiast centralizowanego Vuex, ze względu na w miarę szybki setup i mały rozmiar zadania
+    //Once again I am using EventBus because the task is small so additional store would be an overkill
     EventBus.$on('optionChanged', (newOption) => {
         selectedOption.value = newOption;
     });
@@ -25,6 +25,7 @@
         validator();
         EventBus.$emit('switchSentence', selectedOption.value);
     }
+
 </script>
 
 <template>

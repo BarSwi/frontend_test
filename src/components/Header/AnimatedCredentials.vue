@@ -1,5 +1,11 @@
 <script setup>
-    const shown = false;
+    import EventBus from '@/EventBus';
+    import {ref} from 'vue';
+    const shown = ref(false);
+
+    EventBus.$on("showCredentials", (flag) => {
+        shown.value = flag;
+    });
 </script>
 
 <template>

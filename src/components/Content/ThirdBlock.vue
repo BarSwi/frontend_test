@@ -28,27 +28,32 @@ const getItem = (option) =>{
     }
     return newItem;
 }
-//EventBus zamiast centralizowanego Vuex, ze względu na w miarę szybki setup i mały rozmiar zadania
-EventBus.$on('addSentence', (option) => {
-    let newItem = getItem(option);
-    if(!newItem) return;
-    
-    if(sentences.value.includes(newItem)){
-        alert(`Zdanie: ${newItem} znajduje się w bloku trzecim!`)
-        return;
-    }
-    sentences.value.push(newItem);
-});
+    //Once again I am using EventBus because the task is small so additional store would be an overkill
+    EventBus.$on('addSentence', (option) => {
+        let newItem = getItem(option);
+        if(!newItem) return;
+        
+        if(sentences.value.includes(newItem)){
+            alert(`Zdanie: ${newItem} znajduje się w bloku trzecim!`)
+            return;
+        }
+        sentences.value.push(newItem);
+    });
 
-EventBus.$on("switchSentence", (option) =>{
-    sentences.value.splice(0, sentences.value.length); 
-    let newItem = getItem(option);
-    sentences.value.push(newItem); 
-});
+    EventBus.$on("switchSentence", (option) =>{
+        sentences.value.splice(0, sentences.value.length); 
+        let newItem = getItem(option);
+        sentences.value.push(newItem); 
+    });
 
-const sortedSentences = computed(() =>
-  sentences.value.slice().sort((a, b) => a.localeCompare(b))
-);
+    EventBus.$on("resetSettings", () =>{
+        sentences.value.splice(0, sentences.value.length); 
+    }); 
+
+
+    const sortedSentences = computed(() =>
+    sentences.value.slice().sort((a, b) => a.localeCompare(b))
+    );
 
 
 

@@ -1,17 +1,21 @@
 <script setup>
-import EventBus from '@/EventBus';
-import { ref, watchEffect } from 'vue';
+    import EventBus from '@/EventBus';
+    import { ref, watchEffect } from 'vue';
 
-const options = [
-  { value: 'option1', text: 'Opcja pierwsza' },
-  { value: 'option2', text: 'Opcja druga' },
-  { value: 'option3', text: 'Opcja losowa' }
-];
+    const options = [
+    { value: 'option1', text: 'Opcja pierwsza' },
+    { value: 'option2', text: 'Opcja druga' },
+    { value: 'option3', text: 'Opcja losowa' }
+    ];
 
-const selectedOption = ref('');
-watchEffect(() => {
-    EventBus.$emit('optionChanged', selectedOption.value);
-});
+    const selectedOption = ref('');
+    watchEffect(() => {
+        EventBus.$emit('optionChanged', selectedOption.value);
+    });
+
+    EventBus.$on('resetSettings', () =>{
+        selectedOption.value = '';
+    });
 </script>
 
 <template>

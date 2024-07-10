@@ -1,0 +1,148 @@
+<script setup>
+    import EventBus from '@/EventBus';
+    import {ref, watchEffect} from 'vue';
+
+    const credentialsFlag = ref(false);
+
+    //Once again I am using EventBus because the task is small so additional store would be an overkill
+    const resetSettings = () => {
+        credentialsFlag.value=false;
+        EventBus.$emit('resetSettings');
+    }
+    const toggleCredentials = () =>{
+        credentialsFlag.value = !credentialsFlag.value;
+    }
+
+    watchEffect(() => {
+        EventBus.$emit('showCredentials', credentialsFlag.value);
+    });
+
+</script>
+
+<template>
+<div id = "footer-right">
+    <div id="footer-right-menu">
+        <input type ="checkbox" id = "toggle-menu"/>
+        <div id = "toggle-menu-wrapper">
+            <label for="toggle-menu" id = "toggle-menu-label">
+                <span id = "toggle-label-text">
+                POKAŻ
+                </span>
+                <font-awesome-icon aria-hidden="true" :icon="['fas', 'angle-up']" class = "icon icon__main" />
+            </label>
+            <ul>
+                    <li>
+                        <button id = "reset-settings-btn" @click ="resetSettings"></button>
+                        <label for="reset-settings-btn">
+                            <font-awesome-icon aria-hidden="true" :icon="['fas', 'angle-up']" class = "icon icon__right" />
+                            <span>ZRESETUJ USTAWIENIA</span>
+                        </label>
+                    </li>
+                    <li>
+                        <button id = "show-credentials" @click="toggleCredentials"></button>
+                        <label for="show-credentials">
+                            <font-awesome-icon aria-hidden="true" :icon="['fas', 'angle-up']" class = "icon icon__right" />
+                            
+                            <span>{{!credentialsFlag ?  "POKAŻ DANE OSOBOWE" : "SCHOWAJ DANE OSOBOWE"}}</span>
+                        </label>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</template>
+
+<style lang = "scss" scoped>
+  #footer-right{
+        $color: rgb(42, 45, 50);
+        font-size: 0.65rem;
+        display: flex;
+        margin-left: -10vw;
+
+        label{
+            display: block;
+            padding: 1vh 0vw;
+            width: 13vw;
+            text-align: center;
+            border: 1px solid $color;
+
+            &:hover{
+            cursor: pointer;
+        }
+        }
+        input{
+            opacity: 0;
+            position: absolute;
+        }
+        .icon{
+            transition: .1s ease-in;
+
+            &__right{
+                transform: rotate(90deg);
+            }
+        }
+        #toggle-label-text{
+            padding: 0 10px 0 0;
+        }
+        input:checked{
+            + #toggle-menu-wrapper .icon__main{
+                transform: rotate(180deg);
+            }
+            + #toggle-menu-wrapper{
+                ul{
+                    display: block;
+                }
+            }
+        }
+        #toggle-menu-wrapper{
+            ul{
+                display: none;
+                border-radius: 3px 3px 0 0;
+                list-style: none;
+                font-size: 0.5rem;
+                padding: 0;
+                position: absolute;
+                bottom: 90%;
+                width: 11vw;
+                padding: 2vh 1vw;
+                background-color: white;
+                color: black;
+                text-align: left;
+
+                li{
+                    font-weight: 400;
+                    padding: 2px;
+                    word-wrap: break-word;
+                    label{
+                        width: 11vw;
+                        word-wrap: break-word;
+                        border: none;
+                        padding: 0;  
+                        text-align: left;
+                    }
+                    span{
+                        padding: 0 0 0 5px;
+                    }
+                    button{
+                        opacity: 0;
+                        position: absolute;
+                        border: none;
+                        outline: none;
+
+                        &:focus, &:active{
+                            + label{
+                                color: orange;
+                            }
+                        }
+                    }
+                    &:hover{
+                        color: orange;
+                        cursor: pointer;
+                    }
+                }
+            }
+            
+        }
+    }
+</style>

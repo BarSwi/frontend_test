@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted,onUnmounted, ref } from 'vue';
-
+import MenuSettings from './MenuSettings.vue';
     const isBodyScrollable = ref(false);
     const checkScrollability = () => {
         const bodyHeight = document.body.scrollHeight;
@@ -16,6 +16,8 @@ import { onMounted,onUnmounted, ref } from 'vue';
     onUnmounted(() => {
         window.removeEventListener('resize', checkScrollability);
     });
+
+
 </script>
 
 <template>
@@ -28,36 +30,7 @@ import { onMounted,onUnmounted, ref } from 'vue';
         <div id = "footer-middle">
             <span id = "footer-middle-text">nabthat</span>
         </div>
-        <div id = "footer-right">
-                <div id="footer-right-menu">
-                    <input type ="checkbox" id = "toggle-menu"/>
-                    <div id = "toggle-menu-wrapper">
-                        <label for="toggle-menu" id = "toggle-menu-label">
-                            <span id = "toggle-label-text">
-                            POKAŻ
-                            </span>
-                            <font-awesome-icon aria-hidden="true" :icon="['fas', 'angle-up']" class = "icon icon__main" />
-                        </label>
-                        <ul>
-                                <li>
-                                    <button id = "reset-settings-btn"></button>
-                                    <label for="reset-settings-btn">
-                                        <font-awesome-icon aria-hidden="true" :icon="['fas', 'angle-up']" class = "icon icon__right" />
-                                        <span>ZRESETUJ USTAWIENIA</span>
-                                    </label>
-                                </li>
-                                <li>
-                                    <button id = "show-credentials"></button>
-                                    <label for="show-credentials">
-                                        <font-awesome-icon aria-hidden="true" :icon="['fas', 'angle-up']" class = "icon icon__right" />
-                                        <span>POKAŻ DANE OSOBOWE</span>
-                                    </label>
-                                </li>
-                        </ul>
-                    </div>
-                 
-                </div>
-        </div>
+        <menu-settings></menu-settings>
     </footer>
 </template>
 
@@ -108,95 +81,5 @@ import { onMounted,onUnmounted, ref } from 'vue';
                }
         }
 
-        #footer-right{
-            font-size: 0.65rem;
-            display: flex;
-            margin-left: -10vw;
-
-            label{
-                display: block;
-                padding: 1vh 0vw;
-                width: 13vw;
-                text-align: center;
-                border: 1px solid $color;
-
-                &:hover{
-                cursor: pointer;
-            }
-            }
-            input{
-                opacity: 0;
-                position: absolute;
-            }
-            .icon{
-                transition: .1s ease-in;
-
-                &__right{
-                    transform: rotate(90deg);
-                }
-            }
-            #toggle-label-text{
-                padding: 0 10px 0 0;
-            }
-            input:checked{
-                + #toggle-menu-wrapper .icon__main{
-                    transform: rotate(180deg);
-                }
-                + #toggle-menu-wrapper{
-                    ul{
-                        display: block;
-                    }
-                }
-            }
-            #toggle-menu-wrapper{
-                ul{
-                    display: none;
-                    border-radius: 3px 3px 0 0;
-                    list-style: none;
-                    font-size: 0.5rem;
-                    padding: 0;
-                    position: absolute;
-                    bottom: 90%;
-                    width: 11vw;
-                    padding: 2vh 1vw;
-                    background-color: white;
-                    color: black;
-                    text-align: left;
-
-                    li{
-                        font-weight: 400;
-                        padding: 2px;
-                        word-wrap: break-word;
-                        label{
-                            width: 11vw;
-                            word-wrap: break-word;
-                            border: none;
-                            padding: 0;  
-                            text-align: left;
-                        }
-                        span{
-                            padding: 0 0 0 5px;
-                        }
-                        button{
-                            opacity: 0;
-                            position: absolute;
-                            border: none;
-                            outline: none;
-
-                            &:focus, &:active{
-                                + label{
-                                    color: orange;
-                                }
-                            }
-                        }
-                        &:hover{
-                            color: orange;
-                            cursor: pointer;
-                        }
-                    }
-                }
-                
-            }
-        }
     }
 </style>
