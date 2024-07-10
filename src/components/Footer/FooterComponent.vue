@@ -6,7 +6,7 @@ import EventBus from '@/EventBus';
     const checkScrollability = () => {
         const bodyHeight = document.body.scrollHeight;
         const windowHeight = window.innerHeight;
-        isBodyScrollable.value = bodyHeight > windowHeight;
+        isBodyScrollable.value = bodyHeight > windowHeight - 85;
     };
 
     EventBus.$on("windowSizeChanged", () => {
@@ -45,6 +45,7 @@ import EventBus from '@/EventBus';
     footer{
         $color: rgb(42, 45, 50);
         padding: 15px 3vw;
+        height: 85px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -55,7 +56,7 @@ import EventBus from '@/EventBus';
             $trainsition: .5s ease-in-out;
             border: 1px solid $color;
             transition: $trainsition;
-            //Niecodzienne, ale zachowa stosunek do tego overflow
+            //Not the most usual solution but easiest way to achieve desired effect
             width: 3.5rem;
             .inner-text {
                 transition: $trainsition;

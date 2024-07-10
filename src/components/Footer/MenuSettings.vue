@@ -102,7 +102,6 @@
                 }
                 + #toggle-menu-wrapper{
                     ul{
-                        display: block;
                         opacity: 1;
                         bottom: 155%;
                     }
@@ -127,7 +126,6 @@
                 //So it does not look as good as it could.
                 transition: .2s ease-in-out;
                 position: absolute;
-                z-index: -5;
                 display: block;
                 opacity: 0;
                 border-radius: 3px 3px 0 0;
@@ -140,6 +138,11 @@
                 background-color: white;
                 color: black;
                 text-align: left;
+
+                //Normally I would use after element with filter: blur() but since I do have stacking context problem withotu JS box-shadow is easier to achieve but worse for performance.
+                -webkit-box-shadow: 0px 0px 22px 0px rgb(0, 0, 0);
+                -moz-box-shadow: 0px 0px 22px 0px rgb(0, 0, 0);
+                box-shadow: 0px 0px 22px 0px rgb(0, 0, 0);
                 li{
                     font-weight: 400;
                     padding: 2px;
