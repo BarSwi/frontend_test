@@ -21,7 +21,7 @@ import MenuSettings from './MenuSettings.vue';
 </script>
 
 <template>
-    <footer :class="['', isBodyScrollable ? '' : '__fixed']">
+    <footer :class="{'__fixed': !isBodyScrollable}">
         <div id="footer-left">
             <div class = "inner-text">
                 CSS<br>IS<br>AWESOME
