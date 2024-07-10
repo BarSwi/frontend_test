@@ -75,15 +75,17 @@
 
 <style lang = "scss" scoped>
   #footer-right{
-        position: relative;
         $color: rgb(42, 45, 50);
+        $min-width: 180px;
+        position: relative;
         font-size: 0.65rem;
         display: flex;
-        margin-left: -10vw;
+        margin-left: -7vw;
 
         label{
             display: block;
             padding: 1vh 0vw;
+            min-width: $min-width;
             width: 13vw;
             text-align: center;
             border: 1px solid $color;
@@ -134,6 +136,7 @@
                 bottom: 70%;
                 left: 1px;
                 width: 11vw;
+                min-width: calc(180px - 2vw);
                 padding: 2vh 1vw;
                 background-color: white;
                 color: black;
@@ -176,6 +179,15 @@
                 }
             }
             
+        }
+    }
+
+    @media (max-width: 960px) {
+        #toggle-menu-wrapper{
+            ul{
+                padding: 1vh 1vw !important;
+                font-size: .55rem !important;
+            }
         }
     }
 </style>

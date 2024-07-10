@@ -1,4 +1,5 @@
 <script setup>
+    import CustomButton from '@/components/Utils/CustomButton.vue'
     import EventBus from '@/EventBus';
     import {ref} from 'vue';
 
@@ -31,42 +32,21 @@
 
 <template>
     <div id="btn-wrapper">
-        <button @click="switchSentencesThird" aria-label="Zastąp zdanie w bloku trzecim, wybranym zdaniem">
+        <custom-button @click="switchSentencesThird" aria-label="Zastąp zdanie w bloku trzecim, wybranym zdaniem">
             ZASTĄP
-        </button>
-        <button @click="addSentenceToThird" aria-label="Doklej do trzeciego bloku wybrane zdanie">
+        </custom-button>
+        <custom-button @click="addSentenceToThird" aria-label="Doklej do trzeciego bloku wybrane zdanie">
             DOKLEJ
-        </button>
+        </custom-button>
     </div>
 </template>
 
 <style lang="scss" scoped>
-    $transition: .1s ease-in;
     #btn-wrapper{
         display: flex;
         justify-content: center;
         gap: 2vw;
         flex-wrap: wrap;
-
-        button{
-            transition: $transition;
-            color: grey;
-            font-weight: 700;
-            border: 1px solid white;
-            padding: 10px 35px;
-            border-radius: 5px;
-            background-color: transparent;
-            min-width: max-content;
-
-            &:hover, &:focus, &:active{
-                color: white;
-                outline: none;
-                background-image: linear-gradient(to bottom right, rgb(205,116,0), rgb(253,157,34));
-            }
-            &:hover{
-                cursor: pointer;
-            }
-        }
     }
 
 </style>

@@ -98,4 +98,14 @@
 
         }
     }
+    @media (max-width: 1025px) {
+        .radio-option{
+            padding-left: 27% !important;
+
+            .checkmark{
+                left: 24%;
+                top: -1px;
+            }
+        }
+    }
 </style>

@@ -12,15 +12,21 @@
 
     <main>
         <div id = "blocks-wrapper">
-            <base-block title="BLOK PIERWSZY">
-                <first-block/>
-            </base-block>
-            <base-block title="BLOK DRUGI">
-                <second-block/>
-            </base-block>
-            <base-block title="BLOK Z DŁUGĄ NAZWĄ KTÓRA SAMA SIĘ PRZYTNIE" class="too-long">
-                <third-block/>
-            </base-block>
+            <div class="block-wrapper">
+                <base-block title="BLOK PIERWSZY">
+                    <first-block/>
+                </base-block>
+            </div>
+            <div class="block-wrapper">
+                <base-block title="BLOK DRUGI">
+                    <second-block/>
+                </base-block>
+            </div>
+            <div class="block-wrapper">
+                <base-block title="BLOK Z DŁUGĄ NAZWĄ KTÓRA SAMA SIĘ PRZYTNIE" class="too-long">
+                    <third-block/>
+                </base-block>
+            </div>
         </div>
     </main>
 </template>
@@ -53,5 +59,34 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        
+        .block-wrapper{
+            width: 25vw;
+            min-width: 300px;
+            margin: 5vh 0 5vh 0;
+            &:first-of-type{
+            margin: 5vh 1vw 5vh 5vw;
+            }
+            &:last-of-type{
+                margin: 5vh 5vw 5vh 1vw;
+            }
+        }
+
+        
+    }
+
+    @media (max-width: 1025px) {
+        #blocks-wrapper{
+            justify-content: space-evenly;
+
+            .block-wrapper{
+                width: 30vw;
+                margin: 3vh 2vw !important;
+                &:last-of-type{
+                    width: 50vw;
+                }
+            }
+        }
+
     }
 </style>

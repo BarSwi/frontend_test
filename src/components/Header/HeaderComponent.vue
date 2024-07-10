@@ -26,7 +26,8 @@
         justify-content: space-between;
         align-items: center;
         background-color: black;
-        width: 100vw;   
+        max-width: 100vw;   
+        min-width: 370px;
         min-height: calc(5vh + 1rem);
         margin: 0;
         #icon-wrapper{      
@@ -66,5 +67,12 @@
 
     #animated-credentials-wrapper{
         margin: 10px 30px 10px 0;  
+        max-width: max-content;
+    }
+
+    @media (max-width: 450px) {
+        #header-wrapper{
+            font-size: 0.9rem;
+        }
     }
 </style>

@@ -7,7 +7,8 @@ import EventBus from '@/EventBus';
         const bodyHeight = document.body.scrollHeight;
         const windowHeight = window.innerHeight;
         const footerHeight = document.getElementsByTagName("footer")[0].clientHeight;
-        isBodyScrollable.value = isBodyScrollable.value ? bodyHeight > windowHeight : bodyHeight > windowHeight-footerHeight;
+        isBodyScrollable.value = isBodyScrollable.value ? bodyHeight > windowHeight : bodyHeight > windowHeight - footerHeight;
+        console.log(windowHeight, bodyHeight, footerHeight);
     };
 
     EventBus.$on("windowSizeChanged", () => {
@@ -31,7 +32,7 @@ import EventBus from '@/EventBus';
 <template>
     <footer :class="{'__fixed': !isBodyScrollable}">
         <div id="footer-left">
-            <div class = "inner-text">
+            <div class = "inner-text">  
                 CSS<br>IS<br>AWESOME
             </div>
         </div>
@@ -50,9 +51,9 @@ import EventBus from '@/EventBus';
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 50px;
         background-color: rgb(21,22,26);
         width: 94vw;
+        min-width: 370px;
         #footer-left{
             $trainsition: .5s ease-in-out;
             border: 1px solid $color;
@@ -101,5 +102,19 @@ import EventBus from '@/EventBus';
                }
         }
 
+    }
+
+    @media (max-width: 960px) {
+            #footer-middle{
+                display: none;
+            }
+        }
+    @media (max-width: 450px){
+        footer{
+            justify-content: space-around;
+            width: 100vw;
+            row-gap: 20px;
+            padding: 15px 0 !important;
+        }
     }
 </style>

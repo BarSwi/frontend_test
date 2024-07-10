@@ -8,8 +8,8 @@ const props = defineProps({
 </script>
 
 <template>
-        <div :class="['block-wrapper', props.modifierClass]" id="first-block-wrapper">
-            <div id="block-wrapper-title">
+        <div :class="['block-wrapper-inside', props.modifierClass]">
+            <div class="block-wrapper-title">
                 <strong>{{ props.title }}</strong>
             </div>
             <slot></slot>
@@ -18,26 +18,23 @@ const props = defineProps({
 </template>
 
 <style lang="scss" scoped>
-    .block-wrapper{
+    .block-wrapper-inside{
         text-align: center;
-        width: 25vw;
         font-size: 1rem;
-        #block-wrapper-title{
+        .block-wrapper-title{
             font-size: 0.75em;
             margin: 5vh 0 7vh 0;
         }
-        margin: 5vh 0 5vh 0;
-        &:first-of-type{
-            margin: 5vh 1vw 5vh 5vw;
-        }
-        &:last-of-type{
-            margin: 5vh 5vw 5vh 1vw;
-        }
     }
-
-    .too-long #block-wrapper-title{
+    .too-long .block-wrapper-title{
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+    }
+
+    @media (max-width: 1025px) {
+       .block-wrapper-title{
+        margin: 5vh 0 !important;
+       }
     }
 </style>
