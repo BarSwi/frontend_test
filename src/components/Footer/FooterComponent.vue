@@ -8,7 +8,6 @@ import EventBus from '@/EventBus';
         const windowHeight = window.innerHeight;
         const footerHeight = document.getElementsByTagName("footer")[0].clientHeight;
         isBodyScrollable.value = isBodyScrollable.value ? bodyHeight > windowHeight : bodyHeight > windowHeight-footerHeight;
-        console.log(windowHeight, bodyHeight, footerHeight);
     };
 
     EventBus.$on("windowSizeChanged", () => {
