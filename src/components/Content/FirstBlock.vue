@@ -19,13 +19,14 @@
 </script>
 
 <template>
-        <div v-for="option in options" :key="option.value" class="radio-option">
+        <div v-for="(option, index) in options" :key="option.value" class="radio-option">
             <input
                 type="radio"
                 :id="option.value"
                 name="options"
                 :value="option.value"
                 v-model="selectedOption"
+                :aria-label="'Wybór opcji numer ' + (index + 1)"
             />
             
             <label :for="option.value">
