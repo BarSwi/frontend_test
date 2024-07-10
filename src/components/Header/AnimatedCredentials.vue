@@ -18,5 +18,7 @@
 </template>
 
 <style lang="scss" scoped>
-  
+    #animated-credentials-name{
+        text-align: right;
+    }
 </style>
