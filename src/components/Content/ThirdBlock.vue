@@ -4,6 +4,7 @@ import { ref, computed, onUnmounted, onMounted } from 'vue';
 const sentences = ref([]);
 
     const getItemByIndex = (index, storage) => {
+        if(!storage[index]) alert(`LocalStorage nie zawiera elementu numer: ${index+1}`);
         return storage[index];
     };
 

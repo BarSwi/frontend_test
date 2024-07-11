@@ -3,6 +3,9 @@
     import CustomButton from '@/components/Utils/CustomButton.vue';
     const storageList = ref([]);
     const selectedIndex = ref(0);
+    const savedSelectedIndex = ref(0);
+    const textarea = ref("");
+    const editSentenceMode = ref(false);
     const getItems = () => {
         let counter = 0;
         const tryRetrieve = () => {
@@ -18,7 +21,60 @@
         };
         tryRetrieve();
     }
-    
+    const validator = (tekst) =>{
+        const message = editSentenceMode.value ? "Tekst edytowany nie może być pusty" : "Tekst do dodania nie może być pusty";
+        if(tekst.length === 0 ){
+            alert(message);
+            return false;
+        }
+
+        const index = storageList.value.indexOf(tekst);
+        if(index>=0 && !(editSentenceMode.value === true && index === savedSelectedIndex.value)){
+            alert(`Zdanie ${tekst} znajduje się w magazynie pod numerem: ${index+1}`);
+            return false;
+        }
+
+        return true;
+    }
+    const saveToStorage = (array) => {
+        localStorage.setItem("sentences", JSON.stringify(array));
+    }
+    const handleAddSentence = () =>{
+        if(!validator(textarea.value)) return;
+
+        storageList.value.push(textarea.value);
+        saveToStorage(storageList.value);
+        textarea.value = '';
+    }
+
+    const handleRemoveSentence = () =>{
+        storageList.value.splice(selectedIndex.value, 1);
+        saveToStorage(storageList.value);
+    }
+
+    const handleEditSentence = () => {
+        //Safety reasons
+        savedSelectedIndex.value = selectedIndex.value;
+
+        editSentenceMode.value = true;
+        textarea.value = storageList.value[selectedIndex.value];
+    }
+
+    const editSentenceExecutor = () =>{
+        if(!validator(textarea.value)){
+            textarea.value = storageList.value[selectedIndex.value];
+            return;
+        }
+
+        storageList.value[savedSelectedIndex.value] = textarea.value;
+        saveToStorage(storageList.value);
+        editSentenceRollback();
+    }
+
+    const editSentenceRollback = () =>{
+        editSentenceMode.value = false;
+        textarea.value = '';
+    }
     onMounted(() => {
         getItems();
     });
@@ -27,6 +83,7 @@
 <template>
     <div id = "editor-wrapper">
         <div id = "editor-content-list" class = "editor-menu-element">
+            <h3>Lista tekstu z local storage</h3>
             <ol>
                 <li v-for="(sentence, index) in storageList" :key="index">
                     <input
@@ -44,10 +101,17 @@
             </ol>
         </div>
         <div id ="editor-content-configurator" class = "editor-menu-element">
-            <div id="main-btn-panel">
-                <custom-button>Dodaj</custom-button>
-                <custom-button>Edytuj</custom-button>
-                <custom-button>Usuń</custom-button>
+            <div v-if="!editSentenceMode" id="main-btn-panel">
+                <custom-button @click="handleAddSentence">Dodaj</custom-button>
+                <custom-button @click="handleEditSentence">Edytuj</custom-button>
+                <custom-button @click="handleRemoveSentence">Usuń</custom-button>
+            </div>
+            <div v-else id="main-btn-panel">
+                <custom-button @click="editSentenceExecutor">Zapisz</custom-button>
+                <custom-button @click="editSentenceRollback">Cofnij</custom-button>
+            </div>
+            <div id="editor-text-field">
+                <textarea placeholder = "Wprowadź tekst do dodania" v-model="textarea"></textarea>
             </div>
         </div>
     </div>
@@ -55,19 +119,22 @@
 
 <style lang="scss" scoped>
     #editor-wrapper{
+        font-size: 1rem;
         display: flex;
         justify-content: space-around;    
         margin-top: 30px;
         gap: 2vw;
         flex-wrap: wrap;
         #editor-content-list{
+            text-align: center;
             input{
                 opacity: 0;
                 position: fixed;
             }
             ol{
                 height: 50vh;
-                overflow-y: scroll;
+                font-size: 1em;
+                overflow-y: auto;
             }
             li{
                 opacity: 0.6;
@@ -88,6 +155,7 @@
                         cursor: pointer;
                     }
                 }
+
             }
         }
 
@@ -98,10 +166,40 @@
             gap: 2vw;
             flex-wrap: wrap;
         }
-    }
 
-    .editor-menu-element{
-        min-width: 300px;
-        width: 45vw;
+        .editor-menu-element{
+            min-width: 300px;
+            width: 45vw;
+        }
+
+        #editor-text-field{
+            textarea{
+                resize: none;
+                font-size: 1em;    
+                opacity: 0.6;
+                width: 70%;
+                height: 20vh;
+                margin: 5vh auto;
+                display: block;
+
+                &:focus, &:hover, &:active{
+                    outline: none;
+                    opacity: 1;
+
+                }
+            }
+
+        }
+    }
+    @media (max-width: 960px) {
+        #editor-wrapper{
+            font-size: 0.8rem;
+        }
+        textarea{
+            width: 90% !important;
+        }
+        .editor-menu-element{
+            width: 75vw !important;
+        }
     }
 </style>
