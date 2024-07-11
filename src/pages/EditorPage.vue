@@ -6,6 +6,7 @@
     const savedSelectedIndex = ref(0);
     const textarea = ref("");
     const editSentenceMode = ref(false);
+    const textAreaField = ref();
     const getItems = () => {
         let counter = 0;
         const tryRetrieve = () => {
@@ -58,6 +59,7 @@
 
         editSentenceMode.value = true;
         textarea.value = storageList.value[selectedIndex.value];
+        textAreaField.value.focus();
     }
 
     const editSentenceExecutor = () =>{
@@ -111,7 +113,7 @@
                 <custom-button @click="editSentenceRollback">Cofnij</custom-button>
             </div>
             <div id="editor-text-field">
-                <textarea placeholder = "Wprowadź tekst do dodania" v-model="textarea"></textarea>
+                <textarea ref="textAreaField" placeholder = "Wprowadź tekst do dodania" v-model="textarea"></textarea>
             </div>
         </div>
     </div>
