@@ -1,0 +1,30 @@
+Firstly, I'd like to clarify my approach.
+The reason, why I have chosen Vue over Angular is very simple - I wanted to use something that I feel comfortable with for this task.
+Does it mean that I do not feel comforatble with Angular? During the task I was focused on implementing everything as good as possible with minimal external (Google) help.
+Learning Angular should not be a problem but that would take at least couple days and time factor is in my opinion important during any web development proccess.
+To summarize my explanation - I wanted to do this as fast as possbile and as good as possible. Learning Angular is not a problem but time consuming, therefore I'd like to do this AFTER my initial task.
+
+Main Goal:
+I believe every requirment is met. The only issue that might exist is that I've used min-width for components equal to 320px, someone once told me that should be enough for current devices.
+
+Additional Advantages:
+- JS Framework - Vue.js 
+- Not a single graphic file inside my project, everything was made with icons if they were necessary. I am aware of svg tag existing but it was not requirment so I allowed myself to do things bit easier.
+- CSS IS AWESOME border - Border does 360 spin after hover, text stays in the same position.
+- BEM - To be perfectly honest I've never thought of that at least consciously. I've tried to implement that but I am not exactly proud of the outcome with this one.
+- a11y rules - Since the task is relatively small, most accessibility rules are met when it comes to the buttons and inputs. Aria-labels are set, buttons are focusable same with inputs. Labels for buttons ect.
+colors were used from the project itself, so I didn't focus on contrast. Website scales with ctrl+ properly, I didn't implement additional font control since as I've said project is very minimal.
+- rem, em, vh, vw - I've hardly ever used vh since vw in my opinion is more important. Responsiveness was achieved with minimal breakpoints. For pseudo-elements I am still using pixels because they usually have to be pixel perfect so that is much easier for me to do so, same with margins top/bottom.
+Overall I feel like I did pretty good job with responsiveness and using appropriate units.
+- Mobile first - I was using mostly flexboxes, mobile first is more like a mindset. Everything I was doing I tried to reduce the amount of work later on for mobile appearance.
+- Alphabetical sort - Exists.
+- Additional checks for appending text to the third block - Exists.
+- Footer button that controls flow of the website is shown using pure CSS without JS (not looking very elegant but it is)
+- Hosting on Netlify - Done.
+
+To summarize additional task - Everything was met. Becasue you have more experience than I do, most likely you will find something that is not made perfectly but I am aware of that risk.
+
+
+
+TASK FOR 6:
+- Additional page for local storage edits. Obviously they do not stay persistent between refreshes since we have main file with sentences, but it does work between path changes.
