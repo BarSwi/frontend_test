@@ -104,13 +104,13 @@
         </div>
         <div id ="editor-content-configurator" class = "editor-menu-element">
             <div v-if="!editSentenceMode" id="main-btn-panel">
-                <custom-button @click="handleAddSentence">Dodaj</custom-button>
-                <custom-button @click="handleEditSentence">Edytuj</custom-button>
-                <custom-button @click="handleRemoveSentence">Usuń</custom-button>
+                <custom-button @click="handleAddSentence" aria-label="Dodaj nowe zdanie">Dodaj</custom-button>
+                <custom-button @click="handleEditSentence" aria-label="Edytuj wybrane zdanie">Edytuj</custom-button>
+                <custom-button @click="handleRemoveSentence" aria-label="Usuń wybrane zdanie">Usuń</custom-button>
             </div>
             <div v-else id="main-btn-panel">
-                <custom-button @click="editSentenceExecutor">Zapisz</custom-button>
-                <custom-button @click="editSentenceRollback">Cofnij</custom-button>
+                <custom-button @click="editSentenceExecutor" aria-label="Zapisz zmiany">Zapisz</custom-button>
+                <custom-button @click="editSentenceRollback" aria-label="Cofnij zmiany">Cofnij</custom-button>
             </div>
             <div id="editor-text-field">
                 <textarea ref="textAreaField" placeholder = "Wprowadź tekst do dodania" v-model="textarea"></textarea>
